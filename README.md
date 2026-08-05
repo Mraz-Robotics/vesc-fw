@@ -13,6 +13,10 @@ An open source motor controller firmware.
 This is the source code for the VESC DC/BLDC/FOC controller. Read more at
 [https://vesc-project.com/](https://vesc-project.com/)
 
+## Docker
+
+See DOCKER.md for building custom firmware on any platform.
+
 ## Supported boards
 
 All of them!
