@@ -1,5 +1,5 @@
 /*
-	Copyright 2016 - 2020 Benjamin Vedder	benjamin@vedder.se
+	Copyright 2018 Benjamin Vedder	benjamin@vedder.se
 
 	This file is part of the VESC firmware.
 
@@ -17,9 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     */
 
-#ifndef HW_DMR_60_70_H_
-#define HW_DMR_60_70_H_
+#ifndef HW_DMR_M8_V1_H_
+#define HW_DMR_M8_V1_H_
 
-#include "hw_dmr_60_70_core.h"
+#define HW_DMR_M8_V1
 
-#endif /* HW_DMR_60_70_H_ */
+#include "hw_dmr_m8_core.h"
+
+#endif /* HW_DMR_M8_V1_H_ */

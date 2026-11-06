@@ -13,9 +13,57 @@ An open source motor controller firmware.
 This is the source code for the VESC DC/BLDC/FOC controller. Read more at
 [https://vesc-project.com/](https://vesc-project.com/)
 
-## Docker
+## Building with Docker (recommended)
 
-See DOCKER.md for building custom firmware on any platform.
+Builds firmware in a container, so nothing but Docker is needed on the host.
+Commands are for Linux; adapt as needed for other platforms.
+
+**1. Install Docker:**
+
+```bash
+sudo apt update
+sudo apt install docker.io
+sudo systemctl enable --now docker
+```
+
+**2. Clone the repo and check out a branch** (pick the one matching your VESC Tool version):
+
+```bash
+mkdir -p ~/vesc && cd ~/vesc
+git clone git@github.com:Mraz-Robotics/vesc-fw.git vesc-fw
+cd vesc-fw
+git branch -a
+git checkout release_6_02
+```
+
+**3. Build firmware for a board in one step:**
+
+```bash
+./build.sh dmr_60_70_v1
+```
+
+This builds the `vesc-builder` Docker image (first run only), installs the ARM
+toolchain into `tools/` (first run only), and runs `make <board>`. Several boards
+can be given at once: `./build.sh dmr_60_70_v1 dmr_60_70_v2`.
+
+The output `.bin` files are in the `build` folder.
+
+Other options:
+
+- `./build.sh` with no arguments opens an interactive shell in the container
+  (repo mounted at `/bldc`), where you can run `make` manually.
+- `REBUILD=1 ./build.sh <board>` forces a rebuild of the Docker image.
+- `REPO=/path/to/vesc-fw ./build.sh <board>` mounts a different checkout.
+
+Manual equivalent:
+
+```bash
+sudo docker build -t vesc-builder .
+sudo docker run -it --rm -v ~/vesc/vesc-fw:/bldc -w /bldc vesc-builder
+# inside the container:
+make arm_sdk_install
+make dmr_60_70_v1
+```
 
 ## Supported boards
 

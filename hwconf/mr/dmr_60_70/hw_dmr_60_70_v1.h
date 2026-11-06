@@ -17,11 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     */
 
-#ifndef HW_DMR_60_70_NO_LIMITS_H_
-#define HW_DMR_60_70_NO_LIMITS_H_
+#ifndef HW_DMR_60_70_V1_H_
+#define HW_DMR_60_70_V1_H_
 
-#define DISABLE_HW_LIMITS
+#define HW_DMR_60_70_IS_V1
 
-#include "hw_dmr_60_70.h"
+#include "hw_dmr_60_70_core.h"
 
-#endif /* HW_DMR_60_70_NO_LIMITS_H_ */
+#endif /* HW_DMR_60_70_V1_H_ */

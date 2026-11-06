@@ -29,7 +29,7 @@
 // Variables
 static volatile bool i2c_running = false;
 static mutex_t shutdown_mutex;
-static float bt_diff = 0.0;
+//static float bt_diff = 0.0;
 
 // I2C configuration
 static const I2CConfig i2cfg = {
@@ -38,8 +38,8 @@ static const I2CConfig i2cfg = {
 		STD_DUTY_CYCLE
 };
 
-static void terminal_shutdown_now(int argc, const char **argv);
-static void terminal_button_test(int argc, const char **argv);
+/* static void terminal_shutdown_now(int argc, const char **argv);
+static void terminal_button_test(int argc, const char **argv); */
 
 void hw_init_gpio(void) {
 	chMtxObjectInit(&shutdown_mutex);
@@ -67,6 +67,7 @@ void hw_init_gpio(void) {
 	ENABLE_GATE();
 
 	// Current filter
+	//TODO: assign correct gpio
 	palSetPadMode(GPIOD, 2,
 			PAL_MODE_OUTPUT_PUSHPULL |
 			PAL_STM32_OSPEED_HIGHEST);
@@ -126,7 +127,7 @@ void hw_init_gpio(void) {
 
 	drv8320s_init();
 
-	terminal_register_command_callback(
+	/* terminal_register_command_callback(
 		"shutdown",
 		"Shutdown VESC now.",
 		0,
@@ -136,7 +137,7 @@ void hw_init_gpio(void) {
 		"test_button",
 		"Try sampling the shutdown button",
 		0,
-		terminal_button_test);
+		terminal_button_test); */
 }
 
 void hw_setup_adc_channels(void) {
@@ -276,7 +277,7 @@ void hw_try_restore_i2c(void) {
 	}
 }
 
-bool hw_sample_shutdown_button(void) {
+/* bool hw_sample_shutdown_button(void) {
 	chMtxLock(&shutdown_mutex);
 
 	bt_diff = 0.0;
@@ -296,9 +297,9 @@ bool hw_sample_shutdown_button(void) {
 	chMtxUnlock(&shutdown_mutex);
 
 	return (bt_diff > 0.12);
-}
+} */
 
-static void terminal_shutdown_now(int argc, const char **argv) {
+/* static void terminal_shutdown_now(int argc, const char **argv) {
 	(void)argc;
 	(void)argv;
 	DISABLE_GATE();
@@ -313,4 +314,4 @@ static void terminal_button_test(int argc, const char **argv) {
 		commands_printf("BT: %d %.2f", HW_SAMPLE_SHUTDOWN(), (double)bt_diff);
 		chThdSleepMilliseconds(100);
 	}
-}
+} */
